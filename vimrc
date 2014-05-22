@@ -1,9 +1,7 @@
 execute pathogen#infect()
-syntax on
-
-call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+syntax on
 filetype plugin indent on
 set nocompatible ruler laststatus=2 showcmd showmode number
 set incsearch ignorecase smartcase hlsearch
