@@ -15,6 +15,7 @@ endif
 let g:solarized_termcolors=256
 colorscheme solarized
 
+" Set some file type specific tab settings.
 if has("autocmd")
   autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
@@ -41,5 +42,13 @@ autocmd User fugitive
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
   \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
+" Add git information to the status line.
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-15.(%l,%c%V%)\ %P
+
+" Remap %:h to %%
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+set path=**
+
